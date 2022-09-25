@@ -2,13 +2,12 @@ import React, { useState, useEffect } from "react";
 import {
   Autocomplete,
   Button,
-  FormControl,
   FormGroup,
   TextField,
   Typography,
 } from "@mui/material";
 
-function SayThankyou({ updateKudosList }) {
+function SayThankyou({ updateKudosList, members, setMembers }) {
   const [kudos, setKudos] = useState("");
 
   const handleSubmit = (event) => {
@@ -32,12 +31,12 @@ function SayThankyou({ updateKudosList }) {
     <form onSubmit={handleSubmit}>
       <FormGroup>
         <Typography variant="body2">Who would you like to thank?</Typography>
-        {/* <Autocomplete
+        <Autocomplete
           id="user-autocomplete"
           freeSolo
           options={members.members}
           renderInput={(params) => <TextField {...params} label="team member" />}
-        /> */}
+        />
         <TextField
           type="text"
           placeholder="Enter a thank you message"

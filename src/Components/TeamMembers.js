@@ -1,27 +1,17 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import AddTeamMember from "./AddTeamMember";
 import TeamViewer from "./TeamViewer";
 
-function TeamMembers(props) {
-  const [data, setData] = useState([{}]);
-
-  useEffect(() => {
-    fetch("/members")
-      .then((res) => res.json())
-      .then((data) => {
-        setData(data);
-        console.log(data);
-      });
-  }, []);
+function TeamMembers({members, setMembers}) {
 
   const updateMembers = (members) => {
-    setData(members);
+    setMembers(members);
   }
 
   return <div>
     <AddTeamMember updateMembers={updateMembers} />
-    <TeamViewer team={data} />
-  </div>;
+    <TeamViewer team={members} />
+  </div>
 }
 
 TeamMembers.propTypes = {};

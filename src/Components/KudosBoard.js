@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import RecentKudos from "./RecentKudos";
 import SayThankyou from "./SayThankyou";
 
-function KudosBoard(props) {
+function KudosBoard({members, setMembers}) {
   const [kudosList, setKudosList] = useState([{}]);
 
   useEffect(() => {
@@ -19,7 +19,7 @@ function KudosBoard(props) {
   }
 
   return <div>
-    <SayThankyou updateKudosList={updateKudosList} />
+    <SayThankyou updateKudosList={updateKudosList} members={members} setMembers={setMembers} />
     <RecentKudos kudosList={kudosList} />
   </div>;
 }
