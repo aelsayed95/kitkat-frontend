@@ -1,25 +1,16 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import KudosBoard from "./Components/KudosBoard";
+import TeamMembers from "./Components/TeamMembers";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+function App(props) {
+
+  return <div>
+    <h1>KitKat Board</h1>
+    <TeamMembers></TeamMembers>
+    <KudosBoard />
+  </div>;
 }
+
+App.propTypes = {};
 
 export default App;
