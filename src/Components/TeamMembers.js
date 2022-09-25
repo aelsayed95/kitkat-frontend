@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import AddTeamMember from "./AddTeamMember";
+import TeamViewer from "./TeamViewer";
 
 function TeamMembers(props) {
   const [data, setData] = useState([{}]);
@@ -12,14 +14,13 @@ function TeamMembers(props) {
       });
   }, []);
 
+  const updateMembers = (members) => {
+    setData(members);
+  }
+
   return <div>
-    {(typeof data.members === "undefined") ? (
-        <p>Loading...</p>
-    ): (
-        data.members.map((member, i) => (
-            <p key={i}>{member}</p>
-        ))
-    )}
+    <AddTeamMember updateMembers={updateMembers} />
+    <TeamViewer team={data} />
   </div>;
 }
 
