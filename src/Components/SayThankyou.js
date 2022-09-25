@@ -1,4 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import {Autocomplete} from "@mui/material";
+import { TextField } from "@mui/material";
 
 function SayThankyou({updateKudosList}) {
     const [kudos, setKudos] = useState("");
@@ -23,6 +25,12 @@ function SayThankyou({updateKudosList}) {
     return (
       <form onSubmit={handleSubmit}>
         <label>Who would you like to thank?  </label>
+        {/* <Autocomplete
+          id="user-autocomplete"
+          freeSolo
+          options={members.members}
+          renderInput={(params) => <TextField {...params} label="team member" />}
+        /> */}
         <input
         type="text" 
         value={kudos}
