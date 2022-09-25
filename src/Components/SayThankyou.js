@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 
-function SayThankyou({addKudos}) {
+function SayThankyou({updateKudosList}) {
     const [kudos, setKudos] = useState("");
 
     const handleSubmit = (event) => {
@@ -12,8 +12,12 @@ function SayThankyou({addKudos}) {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({kudos: kudos})
         };
-        fetch('/add-kudos', requestOpts);
-        addKudos(kudos);
+        fetch('/kudos/add', requestOpts)
+          .then((res) => res.json())
+          .then((kudos) => {
+            updateKudosList(kudos);
+            setKudos("");
+          })
     }
 
     return (

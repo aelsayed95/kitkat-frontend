@@ -6,7 +6,7 @@ function KudosBoard(props) {
   const [kudosList, setKudosList] = useState([{}]);
 
   useEffect(() => {
-      fetch("/recent-kudos")
+      fetch("/kudos")
         .then((res) => res.json())
         .then((kudosList) => {
           setKudosList(kudosList);
@@ -14,14 +14,12 @@ function KudosBoard(props) {
         })
   }, []);
 
-  const addKudos = (userInput) => {
-    let copy = [...kudosList.kudos];
-    copy.push(userInput);
-    setKudosList({kudos: copy});
+  const updateKudosList = (kudosList) => {
+    setKudosList(kudosList);
   }
 
   return <div>
-    <SayThankyou addKudos={addKudos} />
+    <SayThankyou updateKudosList={updateKudosList} />
     <RecentKudos kudosList={kudosList} />
   </div>;
 }
