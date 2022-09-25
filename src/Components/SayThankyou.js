@@ -1,44 +1,55 @@
 import React, { useState, useEffect } from "react";
-import {Autocomplete} from "@mui/material";
-import { TextField } from "@mui/material";
+import {
+  Autocomplete,
+  Button,
+  FormControl,
+  FormGroup,
+  TextField,
+  Typography,
+} from "@mui/material";
 
-function SayThankyou({updateKudosList}) {
-    const [kudos, setKudos] = useState("");
+function SayThankyou({ updateKudosList }) {
+  const [kudos, setKudos] = useState("");
 
-    const handleSubmit = (event) => {
-        event.preventDefault();
-        console.log(kudos);
-        const requestOpts = {
-            method: 'POST',
-            mode: 'cors',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({kudos: kudos})
-        };
-        fetch('/kudos/add', requestOpts)
-          .then((res) => res.json())
-          .then((kudos) => {
-            updateKudosList(kudos);
-            setKudos("");
-          })
-    }
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    console.log(kudos);
+    const requestOpts = {
+      method: "POST",
+      mode: "cors",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ kudos: kudos }),
+    };
+    fetch("/kudos/add", requestOpts)
+      .then((res) => res.json())
+      .then((kudos) => {
+        updateKudosList(kudos);
+        setKudos("");
+      });
+  };
 
-    return (
-      <form onSubmit={handleSubmit}>
-        <label>Who would you like to thank?  </label>
+  return (
+    <form onSubmit={handleSubmit}>
+      <FormGroup>
+        <Typography variant="body2">Who would you like to thank?</Typography>
         {/* <Autocomplete
           id="user-autocomplete"
           freeSolo
           options={members.members}
           renderInput={(params) => <TextField {...params} label="team member" />}
         /> */}
-        <input
-        type="text" 
-        value={kudos}
-        onChange={(e) => setKudos(e.target.value)}
+        <TextField
+          type="text"
+          placeholder="Enter a thank you message"
+          value={kudos}
+          onChange={(e) => setKudos(e.target.value)}
         />
-        <input type="submit" />
-      </form>
-    )
+        <Button type="submit" variant="primary">
+          kudos!
+        </Button>
+      </FormGroup>
+    </form>
+  );
 }
 
 SayThankyou.propTypes = {};

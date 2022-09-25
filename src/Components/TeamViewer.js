@@ -1,16 +1,17 @@
+import { List, ListItem } from "@mui/material";
 import React from "react";
 
 function TeamViewer({team}) {
 
-  return <div>
+  return <List>
     {(typeof team.members === "undefined") ? (
-        <p>Loading...</p>
+        <ListItem>Loading...</ListItem>
     ): (
         team.members.map((member, i) => (
-            <p key={i}>{member}</p>
+            <ListItem key={i}>{member}</ListItem>
         ))
     )}
-  </div>;
+  </List>;
 }
 
 TeamViewer.propTypes = {};

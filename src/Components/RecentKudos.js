@@ -1,16 +1,17 @@
+import { List, ListItem } from "@mui/material";
 import React from "react";
 
 function RecentKudos({kudosList}) {
 
-  return <div>
+  return <List>
     {(typeof kudosList.kudos === "undefined") ? (
-        <p>Loading...</p>
+        <ListItem>Loading...</ListItem>
     ): (
         kudosList.kudos.map((text, i) => (
-            <p key={i}>{text}</p>
+            <ListItem key={i}>{text}</ListItem>
         ))
     )}
-  </div>;
+  </List>;
 }
 
 RecentKudos.propTypes = {};
